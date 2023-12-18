@@ -1,25 +1,25 @@
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
 
 public class Randoms implements Iterable<Integer> {
     protected Random random;
-    int observers = 0;
-    ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList());
-    Iterator<Integer> numbersInt = numbers.iterator();
+    int up;
+    int down;
 
     public Randoms(int min, int max) {
-        observers = max - min + 1;
+        up = max;
+        down = min;
+        random = new Random();
     }
 
     @Override
     public Iterator<Integer> iterator() {
         return new Iterator<>() {
-            int next = 0;
+            final boolean isRandoms = true;
+
             @Override
             public boolean hasNext() {
-                if (next <= observers) {
+                if (isRandoms) {
                     return true;
                 }
                 return false;
@@ -27,9 +27,8 @@ public class Randoms implements Iterable<Integer> {
 
             @Override
             public Integer next() {
-                if (next <= observers) {
-                    next++;
-                    return next;
+                if (isRandoms) {
+                    return random.nextInt(down, up + 1);
                 }
                 return null;
             }
