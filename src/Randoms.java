@@ -15,22 +15,15 @@ public class Randoms implements Iterable<Integer> {
     @Override
     public Iterator<Integer> iterator() {
         return new Iterator<>() {
-            final boolean isRandoms = true;
 
             @Override
             public boolean hasNext() {
-                if (isRandoms) {
-                    return true;
-                }
-                return false;
+                return true;
             }
 
             @Override
             public Integer next() {
-                if (isRandoms) {
-                    return random.nextInt(down, up + 1);
-                }
-                return null;
+                return random.nextInt(down, up + 1);
             }
         };
     }
